@@ -37,12 +37,12 @@ To use DirDive, simply navigate to your project directory and run:
 dir_dive [options] <directory_path>
 ```
 
-### Options
+#### Options
 
 - `-I`, `--ignore` : Patterns to ignore (e.g., `__pycache__`, `.git`, `node_modules`)
 - `-o`, `--output` : Specify an output file for saving the directory structure and contents.
 
-### Example
+#### Example
 
 To print the structure and content of the `src` directory while ignoring `.git` directories and saving the output to `output.txt`, run:
 
@@ -64,4 +64,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## About the Author
 
-DirDive was created by `zebang.eth`, a developer passionate about making development and debugging processes smoother and more intuitive. For more tools and contributions, follow me on [GitHub](https://github.com/zebang).
+DirDive was created by `zebang.eth`, a developer passionate about making development and debugging processes smoother and more intuitive. 
