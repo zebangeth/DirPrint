@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+DirDive.egg-info/PKG-INFO
+DirDive.egg-info/SOURCES.txt
+DirDive.egg-info/dependency_links.txt
+DirDive.egg-info/entry_points.txt
+DirDive.egg-info/top_level.txt
+dir_dive/__init__.py
+dir_dive/main.py

@@ -1,0 +1,2 @@
+[console_scripts]
+dir_dive = dir_dive.main:main
