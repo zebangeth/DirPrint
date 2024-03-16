@@ -1,10 +1,8 @@
-# DirDive
+# DirDive (ChatGPT, Claude, etc.) easily, so that they can better help you debug and build by understanding full context.
 
-![DirDive Logo](path/to/logo/if/any.png)
+**DirDive: Simplify Your Code Sharing with LLMs by Exporting Directory Structure and File Contents**
 
-**DirDive: Unveil Your Code's Depths with Ease**
-
-DirDive is a command-line tool that simplifies the process of understanding and sharing your project's directory structure and file contents. Perfect for debugging, collaboration, or simply getting a bird's-eye view of your codebase, DirDive presents your project's anatomy in a clear, navigable, and shareable format.
+DirDive is a command-line tool that simplifies the process of sharing of your project's directory structure and file contents, making it ideal for collaboration with LLMs (like ChatGPT, Claude, etc.). By allowing you to effortlessly share your codebase with LLMs, DirDive enhances their ability to assist you in debugging and building your projects by providing a comprehensive context.
 
 ## Features
 
@@ -61,6 +59,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgments
 
 - Inspired by the simplicity and utility of the `tree` command in Unix-like operating systems.
+- Built with GitHub Copilot and GPT-4-0125-preview.
 
 ## About the Author
 
