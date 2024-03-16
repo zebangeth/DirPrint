@@ -1,6 +1,6 @@
-# DirDive (ChatGPT, Claude, etc.) easily, so that they can better help you debug and build by understanding full context.
+# DirDive
 
-**DirDive: Simplify Your Code Sharing with LLMs by Exporting Directory Structure and File Contents**
+**Simplify Your Code Sharing with LLMs by Exporting Directory Structure and File Contents**
 
 DirDive is a command-line tool that simplifies the process of sharing of your project's directory structure and file contents, making it ideal for collaboration with LLMs (like ChatGPT, Claude, etc.). By allowing you to effortlessly share your codebase with LLMs, DirDive enhances their ability to assist you in debugging and building your projects by providing a comprehensive context.
 
@@ -9,23 +9,7 @@ DirDive is a command-line tool that simplifies the process of sharing of your pr
 - **Comprehensive Directory Tree:** Get a visual tree representation of your project's directory structure.
 - **File Contents Display:** Easily view the contents of each file within the directory tree, enclosed in markdown code blocks for easy copying.
 - **Customizable Ignoring:** Skip over files or directories you don't need with simple ignore patterns.
-- **Output to File:** Save the directory structure and contents to a file for easy sharing or future reference.
-
-## Installation
-
-You can install DirDive directly from the source. Clone this repository and run the installation script:
-
-```bash
-git clone https://github.com/zebangeth/DirDive.git
-cd DirDive
-python setup.py install
-```
-
-Alternatively, you can install it using pip:
-
-```bash
-pip install dir_dive
-```
+- **Output to File:** Option to save the directory structure and contents to a file for easy sharing or future reference.
 
 ## Usage
 
@@ -46,6 +30,22 @@ To print the structure and content of the `src` directory while ignoring `.git` 
 
 ```bash
 dir_dive src -I .git -o output.txt
+```
+
+## Installation
+
+You can install DirDive directly from the source. Clone this repository and run the installation script:
+
+```bash
+git clone https://github.com/zebangeth/DirDive.git
+cd DirDive
+python setup.py install
+```
+
+Alternatively, you can install it using pip:
+
+```bash
+pip install dir_dive
 ```
 
 ## Contributing
