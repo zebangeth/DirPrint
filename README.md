@@ -51,6 +51,7 @@ Note that partial matching is supported. In this case, for `vite-env.d.ts`, you 
 
 The generated `output.txt` will contain:
 
+````
 ```
 src Directory Structure:
 src/
@@ -68,7 +69,7 @@ export function greet(name) {
   return `Hello, ${name}!`;
 }
 ```
-```
+````
 
 Now you can easily share `output.txt` with an LLM, providing it with the necessary context about your project's structure and code.
 
