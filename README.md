@@ -1,8 +1,8 @@
 # DirDive
 
-**Simplify Your Code Sharing with LLMs by Exporting Directory Structure and File Contents**
+**Simplify Your Code Sharing with LLMs by Exporting Directory Structure and Within File Contents**
 
-DirDive is a command-line tool that simplifies the process of sharing of your project's directory structure and file contents, making it ideal for collaboration with LLMs (like ChatGPT, Claude, etc.). By allowing you to effortlessly share your codebase with LLMs, DirDive enhances their ability to assist you in debugging and building your projects by providing a comprehensive context.
+DirDive is a command-line tool that simplifies the process of sharing of your project's directory structure and file contents, making it ideal for collaboration with LLMs (like ChatGPT, Claude, etc.). By allowing you to effortlessly share your codebase with LLMs, DirDive enhances their ability to assist you in debugging and building your projects by providing them with comprehensive context.
 
 ## Features
 
