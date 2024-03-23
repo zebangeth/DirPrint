@@ -52,7 +52,6 @@ Note that partial matching is supported. In this case, for `vite-env.d.ts`, you 
 The generated `output.txt` will contain:
 
 ````
-```
 src Directory Structure:
 src/
 ├── main.js
