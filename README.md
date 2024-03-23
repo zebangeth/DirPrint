@@ -58,12 +58,16 @@ src/
 └── utils.js
 
 src/main.js:
+```
 console.log('Hello, world!');
+```
 
 src/utils.js:
+```
 export function greet(name) {
   return `Hello, ${name}!`;
 }
+```
 ```
 
 Now you can easily share `output.txt` with an LLM, providing it with the necessary context about your project's structure and code.
