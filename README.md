@@ -48,10 +48,6 @@ Alternatively, you can install it using pip:
 pip install dir_dive
 ```
 
-## Contributing
-
-Any contributions you make are **greatly appreciated**.
-
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
