@@ -25,7 +25,6 @@ dir_print [options] <directory_path>
 - `-o`, `--output` : Specify an output file for saving the directory structure and contents.
 
 #### Example
-Here's the revised version with improved clarity and grammar:
 
 Suppose you have a project directory structure like this:
 
