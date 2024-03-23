@@ -1,8 +1,8 @@
-# DirDive
+# Directory Print - DirPrint
 
-**Simplify Your Code Sharing with LLMs by Exporting Directory Structure and Within File Contents**
+**Simplify Your Code Sharing with LLMs by Printing/Exporting Directory Structure and Within File Contents**
 
-DirDive is a command-line tool that simplifies the process of sharing of your project's directory structure and file contents, making it ideal for collaboration with LLMs (like ChatGPT, Claude, etc.). By allowing you to effortlessly share your codebase with LLMs, DirDive enhances their ability to assist you in debugging and building your projects by providing them with comprehensive context.
+DirPrint is a command-line tool that simplifies the process of sharing of your project's directory structure and file contents, making it ideal for collaboration with LLMs (like ChatGPT, Claude, etc.). By allowing you to effortlessly share your codebase with LLMs, DirPrint enhances their ability to assist you in debugging and building your projects by providing them with comprehensive context.
 
 ## Features
 
@@ -13,10 +13,10 @@ DirDive is a command-line tool that simplifies the process of sharing of your pr
 
 ## Usage
 
-To use DirDive, simply navigate to your project directory and run:
+To use DirPrint, simply navigate to your project directory and run:
 
 ```bash
-dir_dive [options] <directory_path>
+dir_print [options] <directory_path>
 ```
 
 #### Options
@@ -25,27 +25,64 @@ dir_dive [options] <directory_path>
 - `-o`, `--output` : Specify an output file for saving the directory structure and contents.
 
 #### Example
+Here's the revised version with improved clarity and grammar:
 
-To print the structure and content of the `src` directory while ignoring `.git` directories and saving the output to `output.txt`, run:
+Suppose you have a project directory structure like this:
 
-```bash
-dir_dive src -o output.txt -I .json node_modules
 ```
+my-project/
+├── src/
+│   ├── main.js
+│   ├── utils.js
+│   ├── vite-env.d.ts
+│   └── views/
+│       └── (other files in views directory)
+├── tests/
+│   └── test.js
+└── README.md
+```
+
+To print the structure and content of the `src` directory while ignoring the `vite-env.d.ts` file and the `views` directory, and saving the output to `output.txt`, run:
+
+```
+dir_print src -o output.txt -I vite views
+```
+
+Note that partial matching is supported. In this case, for `vite-env.d.ts`, you can simply write `vite`.
+
+The generated `output.txt` will contain:
+
+```
+src Directory Structure:
+src/
+├── main.js
+└── utils.js
+
+src/main.js:
+console.log('Hello, world!');
+
+src/utils.js:
+export function greet(name) {
+  return `Hello, ${name}!`;
+}
+```
+
+Now you can easily share `output.txt` with an LLM, providing it with the necessary context about your project's structure and code.
 
 ## Installation
 
-You can install DirDive directly from the source. Clone this repository and run the installation script:
+You can install DirPrint directly from the source. Clone this repository and run the installation script:
 
 ```bash
-git clone https://github.com/zebangeth/DirDive.git
-cd DirDive
+git clone https://github.com/zebangeth/DirPrint.git
+cd DirPrint
 python setup.py install
 ```
 
 Alternatively, you can install it using pip:
 
 ```bash
-pip install dir_dive
+pip install dir_print
 ```
 
 ## License
@@ -59,4 +96,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## About the Author
 
-DirDive was created by `zebang.eth`, a developer passionate about making development and debugging processes smoother and more intuitive. 
+DirPrint was created by `zebang.eth`, a developer passionate about making development and debugging processes smoother and more intuitive. 

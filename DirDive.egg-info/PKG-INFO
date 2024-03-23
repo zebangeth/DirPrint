@@ -14,18 +14,37 @@ License-File: LICENSE
 
 # DirDive
 
-![DirDive Logo](path/to/logo/if/any.png)
+**Simplify Your Code Sharing with LLMs by Exporting Directory Structure and File Contents**
 
-**DirDive: Unveil Your Code's Depths with Ease**
-
-DirDive is a command-line tool that simplifies the process of understanding and sharing your project's directory structure and file contents. Perfect for debugging, collaboration, or simply getting a bird's-eye view of your codebase, DirDive presents your project's anatomy in a clear, navigable, and shareable format.
+DirDive is a command-line tool that simplifies the process of sharing of your project's directory structure and file contents, making it ideal for collaboration with LLMs (like ChatGPT, Claude, etc.). By allowing you to effortlessly share your codebase with LLMs, DirDive enhances their ability to assist you in debugging and building your projects by providing a comprehensive context.
 
 ## Features
 
 - **Comprehensive Directory Tree:** Get a visual tree representation of your project's directory structure.
 - **File Contents Display:** Easily view the contents of each file within the directory tree, enclosed in markdown code blocks for easy copying.
 - **Customizable Ignoring:** Skip over files or directories you don't need with simple ignore patterns.
-- **Output to File:** Save the directory structure and contents to a file for easy sharing or future reference.
+- **Output to File:** Option to save the directory structure and contents to a file for easy sharing or future reference.
+
+## Usage
+
+To use DirDive, simply navigate to your project directory and run:
+
+```bash
+dir_dive [options] <directory_path>
+```
+
+#### Options
+
+- `-I`, `--ignore` : Patterns to ignore (e.g., `__pycache__`, `.git`, `node_modules`)
+- `-o`, `--output` : Specify an output file for saving the directory structure and contents.
+
+#### Example
+
+To print the structure and content of the `src` directory while ignoring `.git` directories and saving the output to `output.txt`, run:
+
+```bash
+dir_dive src -I .git -o output.txt
+```
 
 ## Installation
 
@@ -43,27 +62,6 @@ Alternatively, you can install it using pip:
 pip install dir_dive
 ```
 
-## Usage
-
-To use DirDive, simply navigate to your project directory and run:
-
-```bash
-dir_dive [options] <directory_path>
-```
-
-### Options
-
-- `-I`, `--ignore` : Patterns to ignore (e.g., `__pycache__`, `.git`, `node_modules`)
-- `-o`, `--output` : Specify an output file for saving the directory structure and contents.
-
-### Example
-
-To print the structure and content of the `src` directory while ignoring `.git` directories and saving the output to `output.txt`, run:
-
-```bash
-dir_dive src -I .git -o output.txt
-```
-
 ## Contributing
 
 Any contributions you make are **greatly appreciated**.
@@ -75,7 +73,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgments
 
 - Inspired by the simplicity and utility of the `tree` command in Unix-like operating systems.
+- Built with GitHub Copilot and GPT-4-0125-preview.
 
 ## About the Author
 
-DirDive was created by `zebang.eth`, a developer passionate about making development and debugging processes smoother and more intuitive. For more tools and contributions, follow me on [GitHub](https://github.com/zebang).
+DirDive was created by `zebang.eth`, a developer passionate about making development and debugging processes smoother and more intuitive. 
