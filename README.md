@@ -29,7 +29,7 @@ dir_dive [options] <directory_path>
 To print the structure and content of the `src` directory while ignoring `.git` directories and saving the output to `output.txt`, run:
 
 ```bash
-dir_dive src -I .git -o output.txt
+dir_dive src -o output.txt -I .json node_modules
 ```
 
 ## Installation
