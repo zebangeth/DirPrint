@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+DirPrint.egg-info/PKG-INFO
+DirPrint.egg-info/SOURCES.txt
+DirPrint.egg-info/dependency_links.txt
+DirPrint.egg-info/entry_points.txt
+DirPrint.egg-info/top_level.txt
+dir_print/__init__.py
+dir_print/main.py

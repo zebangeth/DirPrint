@@ -1,0 +1,2 @@
+[console_scripts]
+dir_print = dir_print.main:main
