@@ -1,20 +1,20 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='DirDive',
-    version='0.1.0',
+    name='DirPrint',
+    version='0.1.1',
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'dir_dive=dir_dive.main:main',
+            'dir_print=dir_print.main:main',
         ],
     },
     author='zebang.eth',
     author_email='zebang_li@berkeley.edu',
-    description='DirDive: Dive into your directory structure and file contents with ease.',
+    description='DirPrint: Print your directory structure and file contents with ease.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/zebangeth/DirDive',
+    url='https://github.com/zebangeth/DirPrint',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',

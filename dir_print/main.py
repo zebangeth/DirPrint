@@ -30,7 +30,7 @@ def print_file_contents(startpath, ignore=[]):
             print('```')
             print()
 
-def dir_dive(path, ignore=[], output=None):
+def dir_print(path, ignore=[], output=None):
     original_stdout = sys.stdout
 
     if output:
@@ -46,12 +46,12 @@ def dir_dive(path, ignore=[], output=None):
         print_file_contents(path, ignore)
 
 def main():
-    parser = argparse.ArgumentParser(description='DirDive: Dive into your directory structure and file contents.')
-    parser.add_argument('path', type=str, help='Directory path to dive into')
+    parser = argparse.ArgumentParser(description='DirPrint: Print your directory structure and file contents.')
+    parser.add_argument('path', type=str, help='Directory path to print')
     parser.add_argument('-I', '--ignore', type=str, nargs='*', default=[], help='Patterns to ignore separated by |')
     parser.add_argument('-o', '--output', type=str, help='Output file (optional)')
     args = parser.parse_args()
-    dir_dive(args.path, args.ignore, args.output)
+    dir_print(args.path, args.ignore, args.output)
 
 if __name__ == '__main__':
     main()
