@@ -3,4 +3,6 @@ DirPrint.egg-info
 build
 __pycache__
 
+.env
+
 README.md
