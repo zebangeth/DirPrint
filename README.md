@@ -24,7 +24,7 @@ python setup.py install
 
 Via pip:
 ```bash
-pip install dir_print
+pip install DirPrint==0.2.1
 ```
 
 ## Usage
