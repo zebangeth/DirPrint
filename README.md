@@ -39,7 +39,7 @@ dir_print [options] <directory_path>
 - `-E`, `--export` : Save output to specified file
 - `-I`, `--ignore` : Patterns to completely hide (e.g., `__pycache__`, `.git`)
 - `-O`, `--omit` : Patterns to show in structure but hide contents
-- `--sos` : Show structure of omitted directories
+- `--sos`, `--show-omitted-structure` : Show structure of omitted directories
 
 ### Examples
 

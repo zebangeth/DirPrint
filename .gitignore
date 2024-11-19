@@ -1,5 +1,5 @@
 dist
-.egg-info
+DirPrint.egg-info
 build
 __pycache__
 
