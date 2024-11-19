@@ -1,30 +1,47 @@
 # Directory Print - DirPrint
 
-**Simplify Your Code Sharing with LLMs by Printing/Exporting Directory Structure and Within File Contents**
+**Simplify Code Sharing with LLMs by Exporting Directory Structure and File Contents**
 
-DirPrint is a command-line tool that simplifies the process of sharing of your project's directory structure and file contents, making it ideal for collaboration with LLMs (like ChatGPT, Claude, etc.). By allowing you to effortlessly share your codebase with LLMs, DirPrint enhances their ability to assist you in debugging and building your projects by providing them with comprehensive context.
+DirPrint is a command-line tool that streamlines sharing your project's directory structure and file contents with LLMs (like ChatGPT, Claude, etc.). By providing comprehensive context about your codebase, DirPrint enhances LLMs' ability to assist you in debugging and development tasks.
 
 ## Features
 
-- **Comprehensive Directory Tree:** Get a visual tree representation of your project's directory structure.
-- **File Contents Display:** Easily view the contents of each file within the directory tree, enclosed in markdown code blocks for easy copying.
-- **Customizable Ignoring:** Skip over files or directories you don't need with simple ignore patterns.
-- **Output to File:** Option to save the directory structure and contents to a file for easy sharing or future reference.
+- **Visual Directory Tree:** Get a clear, hierarchical representation of your project's structure
+- **File Contents Display:** View file contents within the tree, formatted in markdown code blocks
+- **File Export:** Save the output to a file for easy sharing and reference
+- **Flexible Content Management:**
+  - **Ignore Mode:** Completely hide specified files/directories from the output
+  - **Omit Mode:** Show files/directories in the directory structure but hide their contents for brevity
+
+## Installation
+
+From source:
+```bash
+git clone https://github.com/zebangeth/DirPrint.git
+cd DirPrint
+python setup.py install
+```
+
+Via pip:
+```bash
+pip install dir_print
+```
 
 ## Usage
 
-To use DirPrint, simply navigate to your project directory and run:
-
+Basic command structure:
 ```bash
 dir_print [options] <directory_path>
 ```
 
-#### Options
+### Options
 
-- `-I`, `--ignore` : Patterns to ignore (e.g., `__pycache__`, `.git`, `node_modules`)
-- `-o`, `--output` : Specify an output file for saving the directory structure and contents.
+- `-E`, `--export` : Save output to specified file
+- `-I`, `--ignore` : Patterns to completely hide (e.g., `__pycache__`, `.git`)
+- `-O`, `--omit` : Patterns to show in structure but hide contents
+- `--sos` : Show structure of omitted directories
 
-#### Example
+### Examples
 
 Suppose you have a project directory structure like this:
 
@@ -34,59 +51,66 @@ my-project/
 │   ├── main.js
 │   ├── utils.js
 │   ├── vite-env.d.ts
-│   └── views/
-│       └── (other files in views directory)
-├── tests/
-│   └── test.js
+│   ├── config/
+│   │   ├── dev.js
+│   │   └── prod.js
+│   └── tests/
+│       ├── main.test.js
+│       └── utils.test.js
 └── README.md
 ```
+To print the structure and content of the src directory while ignoring the vite-env.d.ts file and the views directory, and saving the output to output.txt, run:
 
-To print the structure and content of the `src` directory while ignoring the `vite-env.d.ts` file and the `views` directory, and saving the output to `output.txt`, run:
-
+```bash
+dir_print src -E output.txt -I vite views
 ```
-dir_print src -o output.txt -I vite views
+
+Note that partial matching is supported. In this case, for vite-env.d.ts, you can simply write vite.
+
+
+1. **Basic usage** - Print everything:
+```bash
+dir_print src
 ```
 
-Note that partial matching is supported. In this case, for `vite-env.d.ts`, you can simply write `vite`.
+2. **Using ignore** - Hide test files:
+```bash
+dir_print src -I test
+```
+Output will not show any files/directories containing "test"
 
-The generated `output.txt` will contain:
-
-````
-src Directory Structure:
+3. **Using omit** - Show but hide contents:
+```bash
+dir_print src -O config
+```
+Output:
+```
 src/
 ├── main.js
-└── utils.js
+├── utils.js
+├── [omitted] config/
+└── tests/
+    ├── main.test.js
+    └── utils.test.js
 
-src/main.js:
+[Contents of files shown except for config directory...]
 ```
-console.log('Hello, world!');
-```
 
-src/utils.js:
-```
-export function greet(name) {
-  return `Hello, ${name}!`;
-}
-```
-````
-
-Now you can easily share `output.txt` with an LLM, providing it with the necessary context about your project's structure and code.
-
-## Installation
-
-You can install DirPrint directly from the source. Clone this repository and run the installation script:
-
+4. **Showing omitted structure** - View internal structure of omitted items:
 ```bash
-git clone https://github.com/zebangeth/DirPrint.git
-cd DirPrint
-python setup.py install
+dir_print src -O config --sos
 ```
+Output shows config directory's structure but still omits its contents.
 
-Alternatively, you can install it using pip:
-
+5. **Combined usage** - Multiple patterns and export:
 ```bash
-pip install dir_print
+dir_print src -I node_modules -O "config" "test" -E output.txt --sos
 ```
+
+### Notes
+- Patterns support partial matching (e.g., 'test' matches 'testing.js', 'tests/')
+- Ignore takes precedence over omit when patterns overlap
+- The `--sos` flag only affects directories marked for omission
 
 ## License
 
@@ -95,7 +119,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgments
 
 - Inspired by the simplicity and utility of the `tree` command in Unix-like operating systems.
-- Built with GitHub Copilot and GPT-4-0125-preview.
+- Built with GitHub Copilot, GPT-4-0125-preview, and Claude 3.5 Sonnet.
 
 ## About the Author
 
