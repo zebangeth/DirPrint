@@ -33,7 +33,7 @@ pip install DirPrint
 or
 
 ```bash
-pip install DirPrint==0.2.5
+pip install DirPrint==0.2.8
 ```
 
 ## Usage

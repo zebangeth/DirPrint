@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='DirPrint',
-    version='0.2.5',
+    version='0.2.8',
     packages=find_packages(),
     entry_points={
         'console_scripts': [
