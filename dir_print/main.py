@@ -2,6 +2,18 @@ import os
 import sys
 import argparse
 
+def pattern_matches(name, pattern):
+    """
+    Check if a given name matches a pattern.
+    
+    - If the pattern is surrounded by carets(^), perform a strict match (exact equality).
+    - Otherwise, perform a partial match (substring check).
+    """
+    if (pattern.startswith('^') and pattern.endswith('^')):
+        return name == pattern[1:-1]
+    else:
+        return pattern in name
+
 def print_dir_structure(startpath, ignore=[], omit=[], show_omitted_structure=False):
     def print_tree(path, prefix=""):
         # Get the contents of the directory
@@ -9,7 +21,7 @@ def print_dir_structure(startpath, ignore=[], omit=[], show_omitted_structure=Fa
         entries = sorted(entries)  # Sort entries alphabetically
 
         # Filter out ignored items
-        entries = [e for e in entries if not any(ig in e for ig in ignore)]
+        entries = [e for e in entries if not any(pattern_matches(e, ig) for ig in ignore)]
 
         # Separate directories and files
         dirs = [e for e in entries if os.path.isdir(os.path.join(path, e))]
@@ -28,8 +40,8 @@ def print_dir_structure(startpath, ignore=[], omit=[], show_omitted_structure=Fa
                 entry_prefix = prefix + "├── "
                 new_prefix = prefix + "│   "
 
-            # Check if entry should be omitted
-            is_omitted = any(o in entry for o in omit)
+            # Check if entry should be omitted using strict/partial matching
+            is_omitted = any(pattern_matches(entry, o) for o in omit)
 
             # Print the entry
             if is_dir:
@@ -57,7 +69,7 @@ def print_file_contents(startpath, ignore=[], omit=[]):
     def process_directory(current_path):
         entries = os.listdir(current_path)
         entries = sorted(entries)
-        entries = [e for e in entries if not any(ig in e for ig in ignore)]
+        entries = [e for e in entries if not any(pattern_matches(e, ig) for ig in ignore)]
 
         # Separate directories and files
         dirs = [e for e in entries if os.path.isdir(os.path.join(current_path, e))]
@@ -67,7 +79,7 @@ def print_file_contents(startpath, ignore=[], omit=[]):
         for d in dirs:
             dir_path = os.path.join(current_path, d)
             rel_path = os.path.relpath(dir_path, startpath)
-            if any(o in d for o in omit):
+            if any(pattern_matches(d, o) for o in omit):
                 print(f'{rel_path}/:')
                 print('[Directory contents omitted for brevity...]')
                 print()
@@ -76,10 +88,10 @@ def print_file_contents(startpath, ignore=[], omit=[]):
 
         # Process files after directories
         for f in files:
-            if any(ig in f for ig in ignore):
+            if any(pattern_matches(f, ig) for ig in ignore):
                 continue
             rel_path = os.path.relpath(os.path.join(current_path, f), startpath)
-            if any(o in f for o in omit):
+            if any(pattern_matches(f, o) for o in omit):
                 print(f'{rel_path}:')
                 print('[Content omitted for brevity...]')
                 print()
@@ -117,7 +129,11 @@ def dir_print(path, ignore=[], omit=[], export=None, show_omitted_structure=Fals
         print_file_contents(path, ignore, omit)
 
 def main():
-    parser = argparse.ArgumentParser(description='DirPrint: Print your directory structure and file contents.')
+    parser = argparse.ArgumentParser(
+        description='DirPrint: Print your directory structure and file contents. '
+                    'The default behavior is partial matching (substring check). '
+                    'Wrap a pattern in carets(^) (e.g., ^build^) to enable strict matching.'
+    )
     parser.add_argument('path', type=str, help='Directory path to print')
     parser.add_argument('-I', '--ignore', type=str, nargs='*', default=[],
                         help='Patterns to ignore (completely hide)')
