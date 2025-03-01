@@ -13,6 +13,7 @@ DirPrint is a command-line tool that streamlines sharing your project's director
   - **Ignore Mode:** Completely hide specified files/directories from the output.
   - **Omit Mode:** Show files/directories in the directory structure but hide their contents for brevity.
   - **Strict Matching:** Enable exact matching for file/directory names by wrapping the pattern in carets (^).
+- **Optional Line Count Analysis:** When enabled, DirPrint calculates and displays the number of lines for each file and directory.
 
 ## Installation
 
@@ -50,6 +51,7 @@ dir_print [options] <directory_path>
 - `--ignore`, `-I` : Patterns to completely hide (e.g., `__pycache__`, `.git`, `node_modules`).
 - `--omit`, `-O` : Patterns to show in the structure but hide their contents.
 - `--show-omitted-structure`, `--sos` : Show structure of omitted directories.
+- `--line-count`, `-lc` : Enable display of line counts and percentages for files/directories.
 
 ### Strict Matching with Carets (^)
 
@@ -79,17 +81,13 @@ Suppose you have a project directory structure like this:
 ```
 my-project/
 ├── src/
-│   ├── main.js
-│   ├── utils.js
-│   ├── vite-env.d.ts
-│   ├── config/
-│   │   ├── dev.js
-│   │   └── prod.js
-│   ├── config.json
+│   ├── main.py              # 50 lines
+│   ├── utils.py             # 30 lines
+│   ├── config.json          # 20 lines
 │   └── tests/
-│       ├── main.test.js
-│       └── utils.test.js
-└── README.md
+│       ├── test_main.py     # 20 lines
+│       └── test_utils.py    # 30 lines
+└── README.md                # 50 lines
 ```
 
 1. **Basic usage** - Print everything:
@@ -133,7 +131,7 @@ my-project/
    dir_print src -O ^config^
    ```
 
-   Here, only an entry whose name is exactly `config` (such as the `config/` directory) will be omitted. The file `config.json` will not be omitted because its name does not exactly equal `config`.  
+   Here, only an entry whose name is exactly `config` (such as the `config/` directory) will be omitted. The file `config.json` will not be omitted because its name does not exactly equal `config`.
    **Note:** You may need to escape carets depending on your shell.
 
 5. **Showing omitted structure** - View the internal structure of omitted items:
@@ -142,12 +140,28 @@ my-project/
    dir_print src -O ^config^ --sos
    ```
 
-   This shows the structure within the `config` directory, but its file contents remain omitted.
-
-6. **Combined usage** - Multiple patterns and export:
+6. **Enable line count analysis** - Print structure with line counts and percentages:
 
    ```bash
-   dir_print src -I node_modules -O ^config^ test -E output.txt --sos
+   dir_print src --line-count
+   ```
+
+   The output might look like this:
+
+   ```plaintext
+   src/ (150 lines, 100%)
+   ├── main.py (50 lines, 33.3%)
+   ├── utils.py (30 lines, 20.0%)
+   ├── config.json (20 lines, 13.3%)
+   └── tests/ (50 lines, 33.3%)
+       ├── test_main.py (20 lines, 13.3%)
+       └── test_utils.py (30 lines, 20.0%)
+   ```
+
+7. **Combined usage** - Multiple patterns, export, and line count analysis:
+
+   ```bash
+   dir_print src -I node_modules -O ^config^ test -E output.txt --sos --line-count
    ```
 
    In this example:
@@ -155,6 +169,7 @@ my-project/
    - `node_modules` is ignored using partial matching.
    - `^config^` is strictly omitted (exact match only) so only an entry named exactly `config` is affected.
    - `test` is omitted using partial matching.
+   - The `--line-count` flag enables line count statistics for non-ignored and non-omitted entries.
 
 ### Notes
 
