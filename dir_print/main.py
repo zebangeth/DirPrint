@@ -1,6 +1,7 @@
 import os
 import sys
 import argparse
+import fnmatch
 
 # Mapping of file extensions to markdown language identifiers.
 EXTENSION_LANGUAGE_MAP = {
@@ -29,12 +30,40 @@ def pattern_matches(name, pattern):
     """
     Check if a given name matches a pattern.
     - If the pattern is surrounded by carets (^), perform a strict match (exact equality).
+    - If the pattern contains glob characters (*, ?, [), use fnmatch.
     - Otherwise, perform a partial match (substring check).
     """
     if pattern.startswith('^') and pattern.endswith('^'):
         return name == pattern[1:-1]
+    elif any(char in pattern for char in ['*', '?', '[']):
+        return fnmatch.fnmatch(name, pattern)
     else:
         return pattern in name
+
+def load_gitignore_patterns(startpath):
+    """
+    Load patterns from .gitignore file in the startpath.
+    """
+    gitignore_path = os.path.join(startpath, '.gitignore')
+    patterns = []
+    if os.path.exists(gitignore_path):
+        try:
+            with open(gitignore_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith('#'):
+                        # .gitignore uses / to match directories, but our simple matcher
+                        # compares names. We strip trailing / for compatibility.
+                        if line.endswith('/'):
+                            line = line[:-1]
+                        # Handle basic gitignore negations (extensions) roughly if needed,
+                        # but for now we essentially treat them as ignore patterns.
+                        # We ignore lines starting with ! as we don't support complex inclusion logic yet.
+                        if not line.startswith('!'):
+                            patterns.append(line)
+        except Exception:
+            pass # Fail silently
+    return patterns
 
 def calculate_line_counts(startpath, ignore=[], omit=[]):
     """
@@ -198,8 +227,15 @@ def print_file_contents(startpath, ignore=[], omit=[]):
 
     process_directory(startpath)
 
-def dir_print(path, ignore=[], omit=[], export=None, show_omitted_structure=False, line_count=False):
+def dir_print(path, ignore=[], omit=[], export=None, show_omitted_structure=False, line_count=False, no_gitignore=False):
     """Main function to print directory structure and file contents."""
+    
+    # Auto-load .gitignore patterns if enabled
+    if not no_gitignore:
+        git_patterns = load_gitignore_patterns(path)
+        # Create a new list to avoid modifying the default argument or original list
+        ignore = ignore + git_patterns
+
     original_stdout = sys.stdout
     line_counts = None
     total_lines = None
@@ -240,9 +276,11 @@ def main():
                         help='Show structure of omitted directories')
     parser.add_argument('-lc', '--line-count', action='store_true',
                         help='Display line counts and percentages next to each file/directory (omitted entries are skipped).')
+    parser.add_argument('--no-gitignore', action='store_true',
+                        help='Do not automatically read .gitignore patterns')
 
     args = parser.parse_args()
-    dir_print(args.path, args.ignore, args.omit, args.export, args.show_omitted_structure, args.line_count)
+    dir_print(args.path, args.ignore, args.omit, args.export, args.show_omitted_structure, args.line_count, args.no_gitignore)
 
 if __name__ == '__main__':
     main()

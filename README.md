@@ -12,6 +12,8 @@ DirPrint is a command-line tool that streamlines sharing your project's director
 - **Flexible Content Management:**
   - **Ignore Mode:** Completely hide specified files/directories from the output.
   - **Omit Mode:** Show files/directories in the directory structure but hide their contents for brevity.
+  - **Glob Support:** Use standard globs (e.g., `*.pyc`, `test_*.js`) for flexible matching.
+  - **GitIgnore Integration:** Automatically respects `.gitignore` rules (unless disabled).
   - **Strict Matching:** Enable exact matching for file/directory names by wrapping the pattern in carets (^).
 - **Optional Line Count Analysis:** When enabled, DirPrint calculates and displays the number of lines for each file and directory.
 
@@ -50,6 +52,7 @@ dir_print [options] <directory_path>
 - `--export`, `-E` : Save output to a specified file.
 - `--ignore`, `-I` : Patterns to completely hide (e.g., `__pycache__`, `.git`, `node_modules`).
 - `--omit`, `-O` : Patterns to show in the structure but hide their contents.
+- `--no-gitignore` : Do not automatically load patterns from `.gitignore`.
 - `--show-omitted-structure`, `--sos` : Show structure of omitted directories.
 - `--line-count`, `-lc` : Enable display of line counts and percentages for files/directories.
 
@@ -174,6 +177,8 @@ my-project/
 ### Notes
 
 - **Partial Matching:** By default, a pattern matches if it is a substring of the file or directory name (e.g., `test` matches `testing.js` or `tests/`).
+
+- **Glob Matching:** Standard shell-style wildcards are supported (e.g., `*.log` matches `error.log`, `test_*.py` matches `test_main.py`).
 
 - **Strict Matching:** Wrap a pattern in carets (e.g., `^build^`) to enable exact matching. This ensures the pattern only matches when the file or directory name is an exact match.
 
