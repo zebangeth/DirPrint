@@ -209,12 +209,12 @@ def dir_print(path, ignore=[], omit=[], export=None, show_omitted_structure=Fals
         with open(export, 'w', encoding='utf-8') as f:
             sys.stdout = f
             print(f'{os.path.basename(path)} Directory Structure and File Contents:\n')
-            print(f'<{os.path.basename(path)}-Directory-Structure>\n')
+            print(f'<directory_structure root="{os.path.basename(path)}">')
             print_dir_structure(path, ignore, omit, show_omitted_structure, line_counts, total_lines)
-            print(f'<{os.path.basename(path)}-Directory-Structure>\n')
-            print(f'<{os.path.basename(path)}-File-Contents>\n')
+            print('</directory_structure>\n')
+            print(f'<file_contents root="{os.path.basename(path)}">')
             print_file_contents(path, ignore, omit)
-            print(f'<{os.path.basename(path)}-File-Contents>\n')
+            print('</file_contents>\n')
             sys.stdout = original_stdout
     else:
         print(f'{os.path.basename(path)} Directory Structure:')
