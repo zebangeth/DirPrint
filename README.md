@@ -2,6 +2,8 @@
 
 **Simplify Code Sharing with LLMs by Exporting Directory Structure and File Contents**
 
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/dirprint?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/dirprint)
+
 DirPrint is a command-line tool that streamlines sharing your project's directory structure and file contents with LLMs (like ChatGPT, Claude, etc.). By providing comprehensive context about your codebase, DirPrint enhances LLMs' ability to assist you in debugging and development tasks.
 
 ## Features
