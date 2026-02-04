@@ -236,6 +236,10 @@ def dir_print(path, ignore=[], omit=[], export=None, show_omitted_structure=Fals
         # Create a new list to avoid modifying the default argument or original list
         ignore = ignore + git_patterns
 
+    # Add default system ignores
+    ALWAYS_IGNORE = ['.git', '.DS_Store', '.svn', '.hg']
+    ignore = ignore + ALWAYS_IGNORE
+
     original_stdout = sys.stdout
     line_counts = None
     total_lines = None

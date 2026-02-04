@@ -4,6 +4,8 @@
 
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/dirprint?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREEN&right_color=BLACK&left_text=PyPI+Downloads)](https://pepy.tech/projects/dirprint)
 
+![DirPrint Demo](assets/demo.png)
+
 DirPrint is a command-line tool that streamlines sharing your project's directory structure and file contents with LLMs (like ChatGPT, Claude, etc.). By providing comprehensive context about your codebase, DirPrint enhances LLMs' ability to assist you in debugging and development tasks.
 
 ## Features
@@ -38,7 +40,7 @@ pip install DirPrint
 or
 
 ```bash
-pip install DirPrint==0.3.0
+pip install DirPrint==0.3.1
 ```
 
 ## Usage
